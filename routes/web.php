@@ -21,3 +21,8 @@ Route::get('/', function () {
 Route::any('tg-callback', [
     'uses' => 'App\Http\Controllers\Controller@tgCallback'
 ]);
+
+
+Route::any('tw-callback', [
+    'uses' => 'App\Http\Controllers\Controller@twCallback'
+]);

@@ -4,7 +4,7 @@ namespace App\Console;
 
 
 use Illuminate\Console\Command;
-
+use Illuminate\Support\Facades\Http;
 
 
 class Test1 extends Command
@@ -42,11 +42,27 @@ class Test1 extends Command
      */
     public function handle()
     {
+        $botToken = config('services.tg.key');
+        $chatId =  "-1001750994025";
+        $url = "https://api.telegram.org/bot{$botToken}/sendMessage";
+
+        $message="test1";
+
+        $response = Http::post($url, [
+            'chat_id' => $chatId,
+            'text' => $message,
+        ]);
+
+        if ($response->successful()) {
+            echo 'Message sent successfully!';
+        } else {
+            echo 'Error: ' . $response->json('description');
+        }
 
 
 
 
-        dd(1);
+
     }
 
 }

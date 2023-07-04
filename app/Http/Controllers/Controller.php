@@ -23,4 +23,17 @@ class Controller extends BaseController
         return response()->json(['message' => 'Callback received']);
     }
 
+    public function twCallback(Request $request)
+    {
+        // Log the entire request
+        Log::info('Received request', ['request' => $request->all()]);
+
+        // Your code logic...
+
+        // Return the response
+        return response()->json(['message' => 'Callback received']);
+    }
+
+
+
 }
