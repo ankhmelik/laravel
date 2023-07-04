@@ -15,7 +15,7 @@ class Controller extends BaseController
     public function tgCallback(Request $request)
     {
         // Log the entire request
-        Log::info('Received request', ['request' => $request->all()]);
+//        Log::info('Received request', ['request' => $request->all()]);
 
         // Your code logic...
 
