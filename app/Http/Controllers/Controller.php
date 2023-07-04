@@ -39,7 +39,7 @@ class Controller extends BaseController
         $message.= "Цена: $price" ."\r\n";
         $corridor=0;
 
-        if($ticker == 'BTCUSD' || $ticker =='ETHUSD'){
+        if($ticker == 'BTCUSDT' || $ticker =='ETHUSD'){
             $corridor = 9.3;
         }
         if($ticker == 'ARBUSDT'){
