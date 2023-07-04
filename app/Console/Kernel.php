@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        \App\Console\Test1::class,
+
     ];
 
     /**
