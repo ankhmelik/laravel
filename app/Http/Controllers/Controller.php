@@ -54,13 +54,13 @@ class Controller extends BaseController
         }
 
 
-        $message.= "Дельта: $price %" ."\r\n";
-        $delta = ($price*$corridor/2/100);
-        $maxPrice = $price+$delta;
-        $minPrice = $price-$delta;
+        $message.= "Delta: $corridor %" ."\r\n";
+        $delta = (float)$price*(float)$corridor/2/100;
+        $maxPrice = (float)$price+$delta;
+        $minPrice = (float)$price-$delta;
 
-        $message.= "Макс. цена: $maxPrice" ."\r\n";
-        $message.= "Мин. цена: $minPrice" ."\r\n";
+        $message.= "MAX: $maxPrice" ."\r\n";
+        $message.= "MIN: $minPrice" ."\r\n";
 
 
         $url = "https://api.telegram.org/bot{$botToken}/sendMessage";
