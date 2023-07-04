@@ -38,20 +38,18 @@ class Controller extends BaseController
         $message.= "Криптопара: $ticker" ."\r\n";
         $message.= "Цена: $price" ."\r\n";
         $corridor=0;
-        switch ($ticker) {
-            case 'ETHUSD':
-            case 'BTCUSD':
-                $corridor = 9.3;
-                break;
 
-            case 'ARBUSDT':
-                $corridor = 25.5;
-                break;
-            case 'WETHGMX':
-                $corridor = 11;
-                break;
-
+        if($ticker == 'BTCUSD' || $ticker =='ETHUSD'){
+            $corridor = 9.3;
         }
+        if($ticker == 'ARBUSDT'){
+            $corridor = 25.5;
+        }
+
+        if($ticker == 'WETHGMX'){
+            $corridor = 11;
+        }
+
 
 
         $message.= "Delta: $corridor %" ."\r\n";
