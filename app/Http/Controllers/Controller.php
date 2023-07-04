@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class Controller extends BaseController
@@ -25,6 +26,51 @@ class Controller extends BaseController
 
     public function twCallback(Request $request)
     {
+
+        $botToken = config('services.tg.key');
+        $chatId =  "-1001750994025";
+
+
+        $ticker = $request->get('ticker');
+        $price = $request->get('price');
+
+        $message = "🤟🤟Impermanent loss warning🤟🤟" ."\r\n";
+        $message.= "Криптопара: $ticker" ."\r\n";
+        $message.= "Цена: $price" ."\r\n";
+        $corridor=0;
+        switch ($ticker) {
+            case 'ETHUSD':
+            case 'BTCUSD':
+                $corridor = 9.3;
+                break;
+
+            case 'ARBUSDT':
+                $corridor = 25.5;
+                break;
+            case 'WETHGMX':
+                $corridor = 11;
+                break;
+
+        }
+
+
+        $message.= "Дельта: $price %" ."\r\n";
+        $delta = ($price*$corridor/2/100);
+        $maxPrice = $price+$delta;
+        $minPrice = $price-$delta;
+
+        $message.= "Макс. цена: $maxPrice" ."\r\n";
+        $message.= "Мин. цена: $minPrice" ."\r\n";
+
+
+        $url = "https://api.telegram.org/bot{$botToken}/sendMessage";
+
+
+        $response = Http::post($url, [
+            'chat_id' => $chatId,
+            'text' => $message,
+        ]);
+
         // Log the entire request
         Log::info('Received request', ['request' => $request->all()]);
 
