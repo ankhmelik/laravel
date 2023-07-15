@@ -36,7 +36,7 @@ class Controller extends BaseController
 
         $message = "🤟🤟Impermanent loss warning🤟🤟" ."\r\n";
         $message.= "Криптопара: $ticker" ."\r\n";
-        $message.= "Цена: $price" ."\r\n";
+//        $message.= "Цена: $price" ."\r\n";
         $corridor=0;
 
         if($ticker == 'BTCUSDT' || $ticker =='ETHUSD'){
@@ -49,10 +49,13 @@ class Controller extends BaseController
         if($ticker == 'WETHGMX'){
             $corridor = 11;
         }
+        if($ticker == 'OPETH'){
+            $corridor = 19;
+        }
 
 
 
-        $message.= "Delta: $corridor %" ."\r\n";
+//        $message.= "Delta: $corridor %" ."\r\n";
         $delta = (float)$price*(float)$corridor/2/100;
         $maxPrice = (float)$price+$delta;
         $minPrice = (float)$price-$delta;
