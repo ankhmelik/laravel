@@ -52,6 +52,9 @@ class Controller extends BaseController
         if($ticker == 'OPETH'){
             $corridor = 19;
         }
+        if($ticker == 'MATICETH'){
+            $corridor = 14;
+        }
 
 
 
