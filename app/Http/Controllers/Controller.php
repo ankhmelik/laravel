@@ -37,7 +37,7 @@ class Controller extends BaseController
         $message = "🤟🤟Impermanent loss warning🤟🤟" ."\r\n";
         $message.= "Криптопара: $ticker" ."\r\n";
 //        $message.= "Цена: $price" ."\r\n";
-        $corridor=0;
+        $corridor=10;
 
         if($ticker == 'BTCUSDT' ){
             $corridor = 9.3;
